@@ -1,10 +1,12 @@
 package imani.projectile;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProjectileTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getX() {
 
         //given
@@ -18,7 +20,7 @@ class ProjectileTest {
         assertEquals(46.28, actual, 0.01);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getY() {
 
         //given
@@ -32,7 +34,7 @@ class ProjectileTest {
         assertEquals(-7.90, actual, 0.01);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getApexTime() {
 
         //given
