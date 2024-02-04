@@ -32,4 +32,8 @@ public class Projectile {
         return (velocity * Math.sin(radians)) / GRAVITY;
     }
 
+    public double getPeakY() {
+        return(velocity * velocity / (2 * GRAVITY));
+    }
+
 }
