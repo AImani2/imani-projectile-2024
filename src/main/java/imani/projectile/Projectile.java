@@ -33,7 +33,7 @@ public class Projectile {
     }
 
     public double getPeakY() {
-        return(velocity * velocity / (2 * GRAVITY));
+        return (velocity * velocity / (2 * GRAVITY));
     }
 
 }
