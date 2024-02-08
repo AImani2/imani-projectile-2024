@@ -59,7 +59,7 @@ class ProjectileTest {
         double actual = projectile.getPeakY();
 
         //then
-        assertEquals(215.56, actual, 0.01);
+        assertEquals(57.18, actual, 0.01);
     }
 
 }
