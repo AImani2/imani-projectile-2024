@@ -9,14 +9,19 @@ public interface SimpleDocumentListener extends DocumentListener {
 
     @Override
     default void insertUpdate(DocumentEvent e) {
+
         update(e);
     }
+
     @Override
     default void removeUpdate(DocumentEvent e) {
+
         update(e);
     }
+
     @Override
     default void changedUpdate(DocumentEvent e) {
+
         update(e);
     }
 }

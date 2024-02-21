@@ -77,6 +77,7 @@ public class ProjectileFrame extends JFrame {
         add(calculate);
 
         calculate.addActionListener(new AbstractAction() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
 
