@@ -9,6 +9,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ProjectileFrame extends JFrame {
+    private JTextField velocityField;
+    private JTextField secondsField;
+    private JSlider angleSlider;
+    private JLabel xField;
+    private JLabel yField;
+    private JLabel peakYField;
+    private JLabel interceptXField;
 
     public ProjectileFrame() {
         setSize(400, 600);
@@ -26,19 +33,19 @@ public class ProjectileFrame extends JFrame {
         JLabel interceptXLabel = new JLabel("Intercept X");
         JLabel nothingLabel = new JLabel(" ");
 
-        JTextField velocityField = new JTextField();
+        velocityField = new JTextField();
 
-        JSlider angleSlider = new JSlider(JSlider.HORIZONTAL, 0, 90, 0);
+        angleSlider = new JSlider(JSlider.HORIZONTAL, 0, 90, 0);
         angleSlider.setMajorTickSpacing(10);
         angleSlider.setMinorTickSpacing(1);
         angleSlider.setPaintTicks(true);
         angleSlider.setPaintLabels(true);
 
-        JTextField secondsField = new JTextField();
-        JLabel xField = new JLabel();
-        JLabel yField = new JLabel();
-        JLabel peakYField = new JLabel();
-        JLabel interceptXField = new JLabel();
+        secondsField = new JTextField();
+        xField = new JLabel();
+        yField = new JLabel();
+        peakYField = new JLabel();
+        interceptXField = new JLabel();
 
         //add a row that displays peak y and x intercept and further instructions to changing the value of velocity
         //the fields automatically get updated without pressing calculate
@@ -85,47 +92,35 @@ public class ProjectileFrame extends JFrame {
             }
         });
 
-        ChangeListener listener = new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                JSlider source = (JSlider) e.getSource();
-                // Check if the user is still adjusting the slider
-                if (!source.getValueIsAdjusting()) {
-                    // Get the current value of the slider
-                    int value = source.getValue();
-                    // Print the value to the console
-                    System.out.println(value);
-                }
-            }
-        };
+//        ChangeListener listener = new ChangeListener() {
+//            public void stateChanged(ChangeEvent e) {
+//                JSlider source = (JSlider) e.getSource();
+//                // Check if the user is still adjusting the slider
+//                if (!source.getValueIsAdjusting()) {
+//                    // Get the current value of the slider
+//                    int value = source.getValue();
+//                    // Print the value to the console
+//                    System.out.println(value);
+//                }
+//            }
+//        };
 
-        angleSlider.addChangeListener(listener);
+        angleSlider.addChangeListener(e -> updateProjectile());
 
-        xField.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
+        velocityField.getDocument().addDocumentListener((SimpleDocumentListener) e -> updateProjectile());
+        secondsField.getDocument().addDocumentListener((SimpleDocumentListener) e -> updateProjectile());
+    }
 
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-
-            }
-            // implement the methods
-        });
-        xField.getDocument().addDocumentListener(new SimpleDocumentListener() {
-            @Override
-            public void update(DocumentEvent e) {
-                // Your code here
-            }
-        });
-
-
-
+    public void updateProjectile()
+    {
+        Projectile projectile = new Projectile(
+                Double.parseDouble(velocityField.getText()), Double.parseDouble(String.valueOf(angleSlider.getValue()))
+        );
+        projectile.setSeconds(Double.parseDouble(secondsField.getText()));
+        xField.setText(Double.toString(projectile.getX()));
+        yField.setText(Double.toString(projectile.getY()));
+        peakYField.setText(Double.toString(projectile.getPeakY()));
+        interceptXField.setText(Double.toString(projectile.getInterceptX()));
     }
 }
 

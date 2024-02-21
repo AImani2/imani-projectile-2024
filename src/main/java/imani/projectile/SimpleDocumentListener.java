@@ -1,9 +1,10 @@
 package imani.projectile;
 
 import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 @FunctionalInterface
-public interface SimpleDocumentListener {
+public interface SimpleDocumentListener extends DocumentListener {
     void update(DocumentEvent e);
 
     @Override
