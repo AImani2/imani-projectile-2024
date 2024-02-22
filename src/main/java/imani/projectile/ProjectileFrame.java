@@ -23,7 +23,7 @@ public class ProjectileFrame extends JFrame {
         setTitle("Projectile Calculator");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setLayout(new GridLayout(8, 2));
+        setLayout(new GridLayout(7, 2));
 
         JLabel velocityLabel = new JLabel("Velocity");
         velocityField = new JTextField();
@@ -65,12 +65,6 @@ public class ProjectileFrame extends JFrame {
         add(interceptXLabel);
         add(interceptXField);
 
-        JLabel nothingLabel = new JLabel(" ");
-        JButton calculate = new JButton("Calculate");
-        add(nothingLabel);
-        add(calculate);
-
-        calculate.addActionListener(e -> updateProjectile());
         angleSlider.addChangeListener(e -> updateProjectile());
         velocityField.getDocument().addDocumentListener((SimpleDocumentListener) e -> updateProjectile());
         secondsField.getDocument().addDocumentListener((SimpleDocumentListener) e -> updateProjectile());
