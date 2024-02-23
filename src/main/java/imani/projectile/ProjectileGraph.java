@@ -13,6 +13,7 @@ public class ProjectileGraph extends JComponent {
 
         g.setColor(Color.black);
         g.drawArc((int) projectile.getX(), (int) projectile.getY(), getWidth(), (int) projectile.getPeakY(), 0, (int) projectile.getAngle());
+        g.fillOval();
     }
 
     public void setProjectile(Projectile projectile){
