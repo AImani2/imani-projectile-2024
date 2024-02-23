@@ -11,9 +11,27 @@ public class ProjectileGraph extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        int centerX = 150;
+        int centerY = 150;
+        int radius = 100;
+        int startAngle = 45;
+        int arcAngle = (int) projectile.getAngle();
+
+        int startX = (int) projectile.getX();
+        int startY = (int) projectile.getY();
+
+        int endX = (int) (centerX + radius * Math.cos(Math.toRadians(startAngle + arcAngle)));
+        int endY = (int) (centerY - radius * Math.sin(Math.toRadians(startAngle + arcAngle)));
+
         g.setColor(Color.black);
-        g.drawArc((int) projectile.getX(), (int) projectile.getY(), getWidth(), (int) projectile.getPeakY(), 0, (int) projectile.getAngle());
-        g.fillOval();
+        for (int i = startAngle; i < startAngle + arcAngle; i++) {
+            int nextX = (int) (centerX + radius * Math.cos(Math.toRadians(i + 1)));
+            int nextY = (int) (centerY - radius * Math.sin(Math.toRadians(i + 1)));
+            g.drawLine(startX, - startY, nextX, - nextY);
+            startX = nextX;
+            startY = nextY;
+        }
+        g.fillOval(100,(int) projectile.getY(),10, 10);
     }
 
     public void setProjectile(Projectile projectile){
