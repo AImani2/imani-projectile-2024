@@ -10,7 +10,7 @@ public class ProjectileGraph extends JComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        g.translate(0, getHeight());
         // divide that time up in the for loop and call the projectile
         // function at each of those slots and get x and y there.
         // at those points draw an oval
@@ -25,7 +25,7 @@ public class ProjectileGraph extends JComponent {
         //double timeSlot = totalTime / 8;
 
         // increment by 1/8 each time
-        for (int i = 0; i <= totalTime; i+= .125) //does this increment properly?
+        for (int i = 0; i <= totalTime; i += .125) //does this increment properly?
         {
             int startX = (int) projectile.getX();
             int startY = (int) projectile.getY();
@@ -34,7 +34,7 @@ public class ProjectileGraph extends JComponent {
 
         }
 
-        g.fillOval((int) projectile.getInterceptX() / 2 - 5,- (int) projectile.getPeakY() - 5,10, 10);
+        g.fillOval((int) projectile.getInterceptX() / 2 - 5, - (int) projectile.getPeakY() - 5,10, 10);
     }
 
     public void setProjectile(Projectile projectile){
