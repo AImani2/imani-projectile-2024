@@ -85,7 +85,7 @@ public class ProjectileFrame extends JFrame {
     public void updateProjectile()
     {
         Projectile projectile = new Projectile(
-                Double.parseDouble(velocityField.getText()), Double.parseDouble(String.valueOf(angleSlider.getValue()))
+                Double.parseDouble(String.valueOf(angleSlider.getValue())), Double.parseDouble(velocityField.getText())
         );
         projectile.setSeconds(Double.parseDouble(secondsField.getText()));
         fieldX.setText(Double.toString(projectile.getX()));
