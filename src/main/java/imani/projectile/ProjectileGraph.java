@@ -20,6 +20,7 @@ public class ProjectileGraph extends JComponent {
         //getApexTime * 2
         // the projectile has to have all the same info except for the time
         double totalTime = (projectile.getApexTime() * 2);
+        projectile.setSeconds(0);
 
         //double timeSlot = totalTime / 8;
 
