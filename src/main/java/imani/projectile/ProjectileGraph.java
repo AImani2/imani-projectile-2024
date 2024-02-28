@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class ProjectileGraph extends JComponent {
 
-    Projectile projectile = new Projectile(35,65);
+    Projectile projectile = new Projectile(35, 65);
 
     @Override
     protected void paintComponent(Graphics g) {

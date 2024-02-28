@@ -14,7 +14,7 @@ public class ProjectileFrame extends JFrame {
     private final JTextField secondsField;
     private final JSlider angleSlider;
     private final JLabel fieldX;
-    private final JLabel fieldy;
+    private final JLabel fieldY;
     private final JLabel peakyField;
     private final JLabel interceptxField;
     private final ProjectileGraph graph = new ProjectileGraph();
@@ -55,24 +55,24 @@ public class ProjectileFrame extends JFrame {
         west.add(secondsLabel);
         west.add(secondsField);
 
-        JLabel xLabel = new JLabel("X");
+        JLabel labelX = new JLabel("X");
         fieldX = new JLabel();
-        west.add(xLabel);
+        west.add(labelX);
         west.add(fieldX);
 
-        JLabel yLabel = new JLabel("Y");
-        fieldy = new JLabel();
-        west.add(yLabel);
-        west.add(fieldy);
+        JLabel labelY = new JLabel("Y");
+        fieldY = new JLabel();
+        west.add(labelY);
+        west.add(fieldY);
 
-        JLabel peakYLabel = new JLabel("Peak Y");
+        JLabel peakyLabel = new JLabel("Peak Y");
         peakyField = new JLabel();
-        west.add(peakYLabel);
+        west.add(peakyLabel);
         west.add(peakyField);
 
-        JLabel interceptXLabel = new JLabel("Intercept X");
+        JLabel interceptxLabel = new JLabel("Intercept X");
         interceptxField = new JLabel();
-        west.add(interceptXLabel);
+        west.add(interceptxLabel);
         west.add(interceptxField);
 
         angleSlider.addChangeListener(e -> updateProjectile());
@@ -89,7 +89,7 @@ public class ProjectileFrame extends JFrame {
         );
         projectile.setSeconds(Double.parseDouble(secondsField.getText()));
         fieldX.setText(Double.toString(projectile.getX()));
-        fieldy.setText(Double.toString(projectile.getY()));
+        fieldY.setText(Double.toString(projectile.getY()));
         peakyField.setText(Double.toString(projectile.getPeakY()));
         interceptxField.setText(Double.toString(projectile.getInterceptX()));
         graph.setProjectile(projectile);
