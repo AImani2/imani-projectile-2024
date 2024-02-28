@@ -11,21 +11,12 @@ public class ProjectileGraph extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.translate(0, getHeight());
-        // divide that time up in the for loop and call the projectile
-        // function at each of those slots and get x and y there.
-        // at those points draw an oval
-        // at every other slot draw a line from start x and start y to end x and end y
 
-        // im gonna try for 8 slots
-        //getApexTime * 2
-        // the projectile has to have all the same info except for the time
         double totalTime = (projectile.getApexTime() * 2);
         projectile.setSeconds(0);
 
-        //double timeSlot = totalTime / 8;
-
         // increment by 1/8 each time
-        for (double i = 0; i <= totalTime; i += .125) //does this increment properly?
+        for (double i = 0; i <= totalTime; i += .125)
         {
             int startX = (int) projectile.getX();
             int startY = (int) projectile.getY();
