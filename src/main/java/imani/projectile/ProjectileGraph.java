@@ -25,7 +25,7 @@ public class ProjectileGraph extends JComponent {
         //double timeSlot = totalTime / 8;
 
         // increment by 1/8 each time
-        for (int i = 0; i <= totalTime; i += .125) //does this increment properly?
+        for (double i = 0; i <= totalTime; i += .125) //does this increment properly?
         {
             int startX = (int) projectile.getX();
             int startY = (int) projectile.getY();
