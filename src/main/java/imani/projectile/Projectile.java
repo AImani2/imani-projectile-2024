@@ -15,7 +15,7 @@ public class Projectile {
         this.radians = Math.toRadians(angle);
     }
 
-    public double getAngle(){
+    public double getAngle() {
         return angle;
     }
 
