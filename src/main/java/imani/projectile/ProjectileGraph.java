@@ -34,7 +34,7 @@ public class ProjectileGraph extends JComponent {
 
         }
 
-        g.fillOval((int) projectile.getInterceptX() / 2 - 5, - (int) projectile.getPeakY() - 5,10, 10);
+        g.fillOval((int) projectile.getInterceptX() / 2 - 5, - (int) projectile.getPeakY() - 5, 10,  10);
     }
 
     public void setProjectile(Projectile projectile){
