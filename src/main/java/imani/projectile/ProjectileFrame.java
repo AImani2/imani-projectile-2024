@@ -10,13 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ProjectileFrame extends JFrame {
-    private JTextField velocityField;
-    private JTextField secondsField;
-    private JSlider angleSlider;
-    private JLabel xField;
-    private JLabel yField;
-    private JLabel peakYField;
-    private JLabel interceptXField;
+    private final JTextField velocityField;
+    private final JTextField secondsField;
+    private final JSlider angleSlider;
+    private final JLabel xField;
+    private final JLabel yField;
+    private final JLabel peakYField;
+    private final JLabel interceptXField;
+    private final ProjectileGraph graph = new ProjectileGraph();
 
     public ProjectileFrame() {
         setSize(1000, 600);
@@ -77,9 +78,6 @@ public class ProjectileFrame extends JFrame {
         angleSlider.addChangeListener(e -> updateProjectile());
         velocityField.getDocument().addDocumentListener((SimpleDocumentListener) e -> updateProjectile());
         secondsField.getDocument().addDocumentListener((SimpleDocumentListener) e -> updateProjectile());
-
-
-        ProjectileGraph graph = new ProjectileGraph();
         main.add(graph, BorderLayout.CENTER);
 
     }
@@ -94,6 +92,7 @@ public class ProjectileFrame extends JFrame {
         yField.setText(Double.toString(projectile.getY()));
         peakYField.setText(Double.toString(projectile.getPeakY()));
         interceptXField.setText(Double.toString(projectile.getInterceptX()));
+        graph.setProjectile(projectile);
     }
 
 }

@@ -20,7 +20,9 @@ public class ProjectileGraph extends JComponent {
         //getApexTime * 2
         // the projectile has to have all the same info except for the time
         double totalTime = (projectile.getApexTime() * 2);
-        double timeSlot = totalTime / 8;
+
+        //double timeSlot = totalTime / 8;
+
         // increment by 1/8 each time
         for (int i = 0; i <= totalTime; i+= .125) //does this increment properly?
         {
@@ -31,7 +33,7 @@ public class ProjectileGraph extends JComponent {
 
         }
 
-        g.fillOval(100,(int) projectile.getPeakY(),10, 10);
+        g.fillOval((int) projectile.getInterceptX() / 2 - 5,- (int) projectile.getPeakY() - 5,10, 10);
     }
 
     public void setProjectile(Projectile projectile){
