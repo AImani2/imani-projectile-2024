@@ -10,30 +10,40 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ProjectileFrame extends JFrame {
-    private JTextField velocityField;
-    private JTextField secondsField;
-    private JSlider angleSlider;
-    private JLabel xField;
-    private JLabel yField;
-    private JLabel peakYField;
-    private JLabel interceptXField;
+    private final JTextField velocityField;
+    private final JTextField secondsField;
+    private final JSlider angleSlider;
+    private final JLabel fieldX;
+    private final JLabel fieldY;
+    private final JLabel peakyField;
+    private final JLabel interceptxField;
+    private final ProjectileGraph graph = new ProjectileGraph();
 
     public ProjectileFrame() {
-        setSize(400, 600);
+        setSize(1000, 600);
         setTitle("Projectile Calculator");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setLayout(new GridLayout(7, 2));
+        JPanel main = new JPanel();
+        main.setLayout(new BorderLayout());
+
+        JPanel west = new JPanel();
+        main.add(west, BorderLayout.WEST);
+
+        //tells the JFrame to use this JPanel
+        setContentPane(main);
+
+        west.setLayout(new GridLayout(7, 2));
 
         JLabel velocityLabel = new JLabel("Velocity");
         velocityField = new JTextField();
-        add(velocityLabel);
-        add(velocityField);
+        west.add(velocityLabel);
+        west.add(velocityField);
 
         JLabel angleLabel = new JLabel("Angle");
         angleSlider = new JSlider(JSlider.HORIZONTAL, 0, 90, 0);
-        add(angleLabel);
-        add(angleSlider);
+        west.add(angleLabel);
+        west.add(angleSlider);
 
         angleSlider.setMajorTickSpacing(10);
         angleSlider.setMinorTickSpacing(1);
@@ -42,45 +52,49 @@ public class ProjectileFrame extends JFrame {
 
         JLabel secondsLabel = new JLabel("Seconds");
         secondsField = new JTextField();
-        add(secondsLabel);
-        add(secondsField);
+        west.add(secondsLabel);
+        west.add(secondsField);
 
-        JLabel xLabel = new JLabel("X");
-        xField = new JLabel();
-        add(xLabel);
-        add(xField);
+        JLabel labelX = new JLabel("X");
+        fieldX = new JLabel();
+        west.add(labelX);
+        west.add(fieldX);
 
-        JLabel yLabel = new JLabel("Y");
-        yField = new JLabel();
-        add(yLabel);
-        add(yField);
+        JLabel labelY = new JLabel("Y");
+        fieldY = new JLabel();
+        west.add(labelY);
+        west.add(fieldY);
 
-        JLabel peakYLabel = new JLabel("Peak Y");
-        peakYField = new JLabel();
-        add(peakYLabel);
-        add(peakYField);
+        JLabel peakyLabel = new JLabel("Peak Y");
+        peakyField = new JLabel();
+        west.add(peakyLabel);
+        west.add(peakyField);
 
-        JLabel interceptXLabel = new JLabel("Intercept X");
-        interceptXField = new JLabel();
-        add(interceptXLabel);
-        add(interceptXField);
+        JLabel interceptxLabel = new JLabel("Intercept X");
+        interceptxField = new JLabel();
+        west.add(interceptxLabel);
+        west.add(interceptxField);
 
         angleSlider.addChangeListener(e -> updateProjectile());
         velocityField.getDocument().addDocumentListener((SimpleDocumentListener) e -> updateProjectile());
         secondsField.getDocument().addDocumentListener((SimpleDocumentListener) e -> updateProjectile());
+        main.add(graph, BorderLayout.CENTER);
+
     }
 
     public void updateProjectile()
     {
         Projectile projectile = new Projectile(
-                Double.parseDouble(velocityField.getText()), Double.parseDouble(String.valueOf(angleSlider.getValue()))
+                Double.parseDouble(String.valueOf(angleSlider.getValue())), Double.parseDouble(velocityField.getText())
         );
         projectile.setSeconds(Double.parseDouble(secondsField.getText()));
-        xField.setText(Double.toString(projectile.getX()));
-        yField.setText(Double.toString(projectile.getY()));
-        peakYField.setText(Double.toString(projectile.getPeakY()));
-        interceptXField.setText(Double.toString(projectile.getInterceptX()));
+        fieldX.setText(Double.toString(projectile.getX()));
+        fieldY.setText(Double.toString(projectile.getY()));
+        peakyField.setText(Double.toString(projectile.getPeakY()));
+        interceptxField.setText(Double.toString(projectile.getInterceptX()));
+        graph.setProjectile(projectile);
     }
+
 }
 
 

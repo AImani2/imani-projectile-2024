@@ -15,10 +15,13 @@ public class Projectile {
         this.radians = Math.toRadians(angle);
     }
 
+    public double getAngle() {
+        return angle;
+    }
+
     public void setSeconds(double seconds) {
         this.seconds = seconds;
     }
-
 
     public double getX() {
         return Math.cos(radians) * velocity * seconds;
