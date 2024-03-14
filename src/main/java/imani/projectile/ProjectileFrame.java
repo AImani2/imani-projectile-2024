@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ProjectileFrame extends JFrame {
-    private final JTextField velocityField;
+    private final JSlider velocitySlider;
     private final JTextField secondsField;
     private final JSlider angleSlider;
     private final JLabel fieldX;
@@ -36,12 +36,17 @@ public class ProjectileFrame extends JFrame {
         west.setLayout(new GridLayout(7, 2));
 
         JLabel velocityLabel = new JLabel("Velocity");
-        velocityField = new JTextField();
+        velocitySlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 65);
         west.add(velocityLabel);
-        west.add(velocityField);
+        west.add(velocitySlider);
+
+        velocitySlider.setMajorTickSpacing(10);
+        velocitySlider.setMinorTickSpacing(1);
+        velocitySlider.setPaintTicks(true);
+        velocitySlider.setPaintLabels(true);
 
         JLabel angleLabel = new JLabel("Angle");
-        angleSlider = new JSlider(JSlider.HORIZONTAL, 0, 90, 0);
+        angleSlider = new JSlider(JSlider.HORIZONTAL, 0, 90, 31);
         west.add(angleLabel);
         west.add(angleSlider);
 
@@ -52,6 +57,7 @@ public class ProjectileFrame extends JFrame {
 
         JLabel secondsLabel = new JLabel("Seconds");
         secondsField = new JTextField();
+        secondsField.setText("2.7");
         west.add(secondsLabel);
         west.add(secondsField);
 
@@ -76,7 +82,7 @@ public class ProjectileFrame extends JFrame {
         west.add(interceptxField);
 
         angleSlider.addChangeListener(e -> updateProjectile());
-        velocityField.getDocument().addDocumentListener((SimpleDocumentListener) e -> updateProjectile());
+        velocitySlider.addChangeListener(e -> updateProjectile());
         secondsField.getDocument().addDocumentListener((SimpleDocumentListener) e -> updateProjectile());
         main.add(graph, BorderLayout.CENTER);
 
@@ -85,7 +91,7 @@ public class ProjectileFrame extends JFrame {
     public void updateProjectile()
     {
         Projectile projectile = new Projectile(
-                Double.parseDouble(String.valueOf(angleSlider.getValue())), Double.parseDouble(velocityField.getText())
+                Double.parseDouble(String.valueOf(angleSlider.getValue())), Double.parseDouble(String.valueOf(velocitySlider.getValue()))
         );
         projectile.setSeconds(Double.parseDouble(secondsField.getText()));
         fieldX.setText(Double.toString(projectile.getX()));
@@ -96,5 +102,7 @@ public class ProjectileFrame extends JFrame {
     }
 
 }
+
+
 
 
