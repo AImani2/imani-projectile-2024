@@ -17,13 +17,6 @@ public class ProjectileGraph extends JComponent {
         g.setColor(Color.white);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-
-////        for (int x = 30; x < getWidth(); x += 30) {
-//            for (int y = 30; y < getHeight(); y += 30) {
-//                g.drawLine(x, y, getWidth(), getHeight());
-//            }
-////        }
-
         g.setColor(Color.lightGray);
         int rows = getHeight() / 30;
         int cols = getWidth() / 30;
@@ -47,16 +40,6 @@ public class ProjectileGraph extends JComponent {
         g.drawLine(0, getHeight() - 30, getWidth(), getHeight() - 30);
         g.translate(0, getHeight());
 
-
-
-
-
-//        for (int x = 30; x <= getWidth(); x += 30) {
-//            for (int y = 30; y <= - getHeight(); y += 30) {
-//                g.drawRect(x, y, 30,  - 30);
-//            }
-//        }
-
         double totalTime = (projectile.getApexTime() * 2);
         projectile.setSeconds(0);
 
@@ -73,14 +56,16 @@ public class ProjectileGraph extends JComponent {
 
         g.setColor(Color.blue);
         g.fillOval((int) projectile.getInterceptX() / 2 - 5, - (int) projectile.getPeakY() - 5, 10,  10);
-        String peakY = ("(" + FORMAT.format(projectile.getPeakY()) + ")");
-        g.drawString(peakY, ((int) projectile.getInterceptX() / 2 - 22), - ((int) projectile.getPeakY() + 35));
+        String peakY = ("(" + FORMAT.format(projectile.getInterceptX()) + ", " + FORMAT.format(projectile.getPeakY()) + ")");
+        g.drawString(peakY, ((int) projectile.getInterceptX() / 2 - 50), - ((int) projectile.getPeakY() + 35));
 
         g.setColor(Color.red);
-        projectile.setSeconds(2.7);
-        g.fillOval((int) projectile.getX(), - (int) projectile.getY() - 5, 10, 10);
-        String point = ("(" + FORMAT.format(projectile.getX()) + ", " + FORMAT.format(projectile.getY()) + ")");
-        g.drawString(point, (int) projectile.getX() - 50, - (int) projectile.getY() - 20);
+        Projectile projectileCopy = new Projectile(projectile);
+        projectileCopy.setSeconds(2.7);
+
+        g.fillOval((int) projectileCopy.getX(), - (int) projectileCopy.getY() - 5, 10, 10);
+        String point = ("(" + FORMAT.format(projectileCopy.getX()) + ", " + FORMAT.format(projectileCopy.getY()) + ")");
+        g.drawString(point, (int) projectileCopy.getX() - 50, - (int) projectileCopy.getY() - 20);
     }
 
     public void setProjectile(Projectile projectile) {
